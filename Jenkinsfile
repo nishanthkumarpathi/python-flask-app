@@ -40,6 +40,12 @@ pipeline {
                 sh "docker rmi $registry:$BUILD_NUMBER"
             }
         }
+        stage('Deploy to Kubernetes') {
+            steps {
+                echo 'Deploy the App using Ansible'
+                sh "kubectl apply -f deployment.yml"
+            }
+        }
     }
     post {
         always {
