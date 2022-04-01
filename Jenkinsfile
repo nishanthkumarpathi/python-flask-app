@@ -40,10 +40,11 @@ pipeline {
                 sh "docker rmi $registry:$BUILD_NUMBER"
             }
         }
-        stage('Deploy to Kubernetes') {
+        stage('Deploy to Kubernetes Dev Environment') {
             steps {
-                echo 'Deploy the App using Ansible'
-                sh "kubectl apply -f deployment.yml"
+                echo 'Deploy the App using Kubectl'
+                sh "sed -i 's/TAG/\"$BUILD_NUMBER\"/g' python-flask-deployment.yml"
+                sh "kubectl apply -f python-flask-deployment.yml"
             }
         }
     }
