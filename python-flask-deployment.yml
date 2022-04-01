@@ -7,13 +7,13 @@ spec:
   selector: # Define the Selector
     matchLabels:
       run: python-flask-app-label
-      appversion: "BUILDNUMBER"
+      #appversion: "BUILDNUMBER"
   replicas: 2 # Define the Number of Pods
   template:
     metadata:
       labels:
         run: python-flask-app-label
-        appversion: "BUILDNUMBER"
+        #appversion: "BUILDNUMBER"
     spec:
       containers: # Container Details
       - name: python-flask-app-container
@@ -31,7 +31,7 @@ metadata:
   namespace: DEPLOYMENTENVIRONMENT
   labels:
     run: python-flask-app-label
-    appversion: "BUILDNUMBER"
+    #appversion: "BUILDNUMBER"
 spec:
   type: NodePort
   ports:
@@ -40,4 +40,4 @@ spec:
     protocol: TCP
   selector:
     run: python-flask-app-label
-    appversion: "BUILDNUMBER"
+    #appversion: "BUILDNUMBER"
