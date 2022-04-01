@@ -49,6 +49,9 @@ pipeline {
             }
         }
         stage('Promote to Production') {
+            steps {
+                echo "Promote to production"
+            }
             input {
                 message "Do you want to Promote the Build to Production"
                 ok "Ok"
