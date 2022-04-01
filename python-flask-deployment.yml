@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: python-flask-app-deployment # Define the Deployment Name
+  namespace: DEPLOYMENTENVIRONMENT
 spec:
   selector: # Define the Selector
     matchLabels:
@@ -25,6 +26,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: python-flask-app-service
+  namespace: DEPLOYMENTENVIRONMENT
   labels:
     run: python-flask-app-label
 spec:
