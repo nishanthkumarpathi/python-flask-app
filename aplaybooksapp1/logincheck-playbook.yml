@@ -1,0 +1,10 @@
+---
+- name: Login to Target Server and Check
+  hosts: all
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+  tasks:
+     - name: Check the Host Name
+       command: "hostname"
+     - name: Create a file on Target Server
+       command: "touch ansiblefile.txt"
