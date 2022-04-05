@@ -1,8 +1,6 @@
 bandit-output.json
 trufflehog-output.json
 
-*.terraform.*
-
 terraformdockerinfra/.terraform
 
 terraformdockerinfra/.terraform.lock.hcl

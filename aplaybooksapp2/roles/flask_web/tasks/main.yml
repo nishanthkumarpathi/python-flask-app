@@ -1,0 +1,4 @@
+    - name: Ensure flask is installed
+      pip:
+        name: ['flask', 'flask-mysql']
+        state: present

@@ -1,0 +1,16 @@
+    - name: Ensure mysql is installed
+      apt:
+        name: ['mysql-server', 'mysql-client']
+        state: present
+
+
+    - name: Install PYMsql
+      pip:
+        name: pymysql
+        state: present
+
+    - name: Ensure the Database Started
+      service:
+        name: mysql
+        state: started
+        enabled: yes

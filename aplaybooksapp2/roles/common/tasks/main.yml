@@ -1,0 +1,19 @@
+    - name: Install Common Dependencies
+      apt:
+        name: ['python', 'python-setuptools', 'python-dev', 'build-essential', 'python-pip', 'python-mysqldb', 'python3-pip']
+        state: present
+
+    - name: Simple Dummy Task
+      command: "hostname"
+
+#--------equivalent of the above.
+
+# apt install python
+# apt install python-dev
+# apt install python-setuptools
+# apt install build-essentials
+# apt install python-pip
+# apt install python-mysqldb
+# apt install python3-pip
+
+

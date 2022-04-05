@@ -1,0 +1,15 @@
+- name: Deploy a Mysql DB Server
+  hosts: db_server
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+  roles:
+    - common
+    - mysql_db
+
+- name: Deploy a Web Application Server
+  hosts: web_server
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+  roles:
+    - common
+    - flask_web

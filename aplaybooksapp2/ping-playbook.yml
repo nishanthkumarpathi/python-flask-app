@@ -1,0 +1,8 @@
+---
+- name: Simple Task to Check Connectivity
+  hosts: all
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+  tasks:
+     - name: Just Checking Connectivity
+       command: "hostname"
