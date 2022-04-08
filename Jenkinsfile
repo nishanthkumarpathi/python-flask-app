@@ -29,7 +29,7 @@ pipeline {
                 stage('Flake8') {
                     steps {
                         echo 'Flake8 Scaning'
-                        sh 'flake8 . --format=json --output-file flake8-output.json --exit-zero'
+                        sh 'python3 -m flake8 . --format=json --output-file flake8-output.json --exit-zero'
                     }
                 }
                 
