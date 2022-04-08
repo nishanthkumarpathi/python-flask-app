@@ -27,3 +27,37 @@ resource "docker_container" "db_server" {
     external = 3306
   }
 }
+
+# Print DB Server IP
+output "db_server_container_ip" {
+  value = docker_container.db_server.ip_address
+  description = "IP of the DB Docker Container"
+}
+
+# Print Web Server IP
+output "web_server_container_ip" {
+  value = docker_container.web_server.ip_address
+  description = "IP of the Web Docker Container"
+}
+
+# resource "local_file" "nishanth_inventory" {
+#   content = templatefile("inventory.template",{
+#     db_ip = "${docker_container.db_server.ip_address}",
+#     web_ip = "${docker_container.web_server.ip_address}"
+#   })
+#   filename = "inventory.txt"
+# }
+
+resource "local_file" "db_inventory" {
+  content = templatefile("db_server.template",{
+    db_ip = "${docker_container.db_server.ip_address}"
+  })
+  filename = "db_server.yml"
+}
+
+resource "local_file" "web_inventory" {
+  content = templatefile("../aplaybooksapp2/host_vars/web_server.template",{
+    web_ip = "${docker_container.web_server.ip_address}"
+  })
+  filename = "../aplaybooksapp2/host_vars/web_server.yml"
+}
