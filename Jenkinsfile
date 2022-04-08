@@ -31,7 +31,7 @@ pipeline {
                         echo 'Flake8 Scaning'
                         //docker run -ti --rm -v $(pwd):/apps alpine/flake8:3.5.0
                         //sh 'python3 -m flake8 . --format=json --output-file flake8-output.json --exit-zero'
-                        sh 'docker run -ti --rm -v $(pwd):/apps alpine/flake8:3.5.0 flake8 . --format=json --output-file flake8-output.json --exit-zero'
+                        sh 'docker run -ti --rm -v $(pwd):/apps alpine/flake8:3.5.0 flake8 /apps/ --format=json --output-file flake8-output.json --exit-zero'
                     }
                 }
                 
