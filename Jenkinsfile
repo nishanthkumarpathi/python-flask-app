@@ -18,14 +18,20 @@ pipeline {
                     steps {
                         echo 'Scanning the Source Code using Bandit'
                         sh 'docker run --user $(id -u):$(id -g) -v $(pwd):/src --rm secfigo/bandit bandit -r /src -f json -o /src/bandit-output.json | exit 0'
-            }
-        }
+                    }
+                }
                 stage('Git Secret using TruffleHog') {
                     steps {
                         echo 'Scan the git repo using Trufflehog'
                         sh 'docker run --user $(id -u):$(id -g) --rm -v "$(pwd):/proj" dxa4481/trufflehog file:///proj --json | tee trufflehog-output.json'
-            }
-        }
+                    }
+                }
+                stage('Flake8') {
+                    steps {
+                        echo 'Flake8 Scaning'
+                        sh 'flake8 . --format=json --output-file flake8-output.json --exit-zero'
+                    }
+                }
                 
             }
         }    
