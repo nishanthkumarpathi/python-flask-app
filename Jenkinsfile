@@ -31,7 +31,19 @@ pipeline {
                         echo 'Flake8 Scaning'
                         //docker run -ti --rm -v $(pwd):/apps alpine/flake8:3.5.0
                         //sh 'python3 -m flake8 . --format=json --output-file flake8-output.json --exit-zero'
-                        sh 'docker run -ti --rm -v $(pwd):/apps alpine/flake8:3.5.0 flake8 /apps/ --format=json --output-file flake8-output.json --exit-zero'
+                        //sh 'docker run -ti --rm -v $(pwd):/apps alpine/flake8:3.5.0 /apps --exit-zero | tee flake8-output.txt'
+                    }
+                }
+                stage('Dockerlint') {
+                    steps {
+                        echo 'Dockerlint Scaning'
+                        sh 'docker run --user $(id -u):$(id -g) -it --rm -v "$PWD/Dockerfile":/Dockerfile:ro redcoolbeans/dockerlint | tee dockerlint-output.json'
+                    }
+                }
+                stage('Hadolint') {
+                    steps {
+                        echo 'Hadolint Scaning'
+                        sh 'docker run --user $(id -u):$(id -g) -it --rm -v "$PWD/Dockerfile":/Dockerfile:ro hadolint/hadolint hadolint Dockerfile | tee hadolint-output.json'
                     }
                 }
                 
